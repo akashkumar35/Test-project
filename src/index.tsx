@@ -1,16 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
+import reportWebVitals from './reportWebVitals';
+import { PersistGate } from 'redux-persist/integration/react';
+import { Provider } from "react-redux";
+import store, { persistor } from './Redux/Store';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import App from './App';
+import { BrowserRouter,Routes} from "react-router-dom";
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <App />
+<BrowserRouter>
+
+<React.StrictMode>
+     <Provider store={store}>
+     <PersistGate loading={null} persistor={persistor}>
+      <ToastContainer/>
+        <App/>
+      </PersistGate>
+      </Provider>
+    
   </React.StrictMode>
+  
+</BrowserRouter>
+ 
 );
 
 // If you want to start measuring performance in your app, pass a function
