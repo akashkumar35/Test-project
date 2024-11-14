@@ -8,9 +8,7 @@ import { ColorRing } from "react-loader-spinner";
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handlesigninClick = () => {
-    navigate("/login");
-  };
+  
   const [loading, setloading] = useState(false);
 
   const initialvalues = {
@@ -30,7 +28,7 @@ const Register = () => {
     dispatch(RegisterUser(registervalues)).then((data) => {
       setloading(false);
       if (data) {
-        navigate("/login");
+        navigate("/dashboard");
       }
     });
     console.log(registervalues);
@@ -107,12 +105,7 @@ const Register = () => {
           ) : null}
         </div>
 
-        <span>
-          Already have an account
-          <span className="px-1 text-blue-700" onClick={handlesigninClick}>
-            Log in
-          </span>
-        </span>
+       
       </div>
     </div>
   );

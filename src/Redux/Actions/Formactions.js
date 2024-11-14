@@ -9,11 +9,15 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ActionTypes } from "./Actiontypes";
 
-export const RegisterUser = (request) => () => {
+export const RegisterUser = (request) => (dispatch) => {
   const response = axios
     .post(`${baseURL}${REGISTER_USER}`, { ...request })
     .then((data) => {
-      console.log("userres", data.data.id);
+      console.log("userres", data.data);
+      dispatch({
+        type: ActionTypes.CUSTOMER_LIST_DETAILS,
+        payload: data.data,
+    })
       localStorage.setItem("Userid", data.data.id);
       if (data.status === 201) {
         toast.success("user created successfully");

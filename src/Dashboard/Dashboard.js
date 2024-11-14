@@ -10,6 +10,9 @@ function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const loggedInUserDetails = useSelector((state) => state.auth_store.data);
+  console.log(".,.,",loggedInUserDetails)
+
   const SampleData = {
     new: {
       count: "76",
@@ -105,14 +108,12 @@ function Dashboard() {
           <div className="flex justify-center mt-[4%]">
             <div className="flex flex-col items-start">
               <span className="text-[20px]">
-                name :<span> Akash kumar</span>
+                name :<span>{loggedInUserDetails?.name} </span>
               </span>
               <span className="text-[20px]">
-                email :<span> Test123@gmail.com</span>
+                email :<span> {loggedInUserDetails?.email}</span>
               </span>
-              <span className="text-[20px]">
-                Jobrole :<span> Developer</span>
-              </span>
+             
             </div>
           </div>
         </div>
